@@ -5,14 +5,22 @@ execute:
 format: html
 ---
 
+
+
 # Ensayo
+
+
 
 ```{r}
 #| eval: false
 remotes::install_github("gdauby/ConR", force = TRUE)
 ```
 
+
+
 Cargamos el dataset de ejemplo:
+
+
 
 ```{r}
 library(ConR)
@@ -28,7 +36,11 @@ spat <- data1$spatial
 ggplot() + geom_sf(data = spat, aes(fill = tax), alpha = 0.3) + theme_bw()
 ```
 
+
+
 # *Tilandsia latifolia*
+
+
 
 ```{r}
 fuente <- read.csv("SP_ConR-2022_28mayo2025.csv", sep = ";")
