@@ -1,16 +1,15 @@
 ---
 title: "Tilandsia"
+execute: 
+  warning: false
 format: html
 ---
-
-```{r}
-
-```
 
 # Ensayo
 
 ```{r}
-remotes::install_github("gdauby/ConR")
+#| eval: false
+remotes::install_github("gdauby/ConR", force = TRUE)
 ```
 
 Cargamos el dataset de ejemplo:
