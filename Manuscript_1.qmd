@@ -29,7 +29,7 @@ spat <- data1$spatial
 ggplot() + geom_sf(data = spat, aes(fill = tax), alpha = 0.3) + theme_bw()
 ```
 
-# Tilandsia latifolia
+# *Tilandsia latifolia*
 
 ```{r}
 fuente <- read.csv("SP_ConR-2022_28mayo2025.csv", sep = ";")
@@ -40,8 +40,10 @@ land <- rnaturalearth::ne_countries(
             scale = 50, returnclass = "sf")
 ggplot() + 
     geom_sf(data = land, fill = "whitesmoke") +
-    geom_sf(data = spat2, fill = "hotpink", alpha = 0.8) + 
-    labs(title = "Tilandsia latifolia")
+    geom_sf(data = spat2, fill = "hotpink", color = "hotpink", alpha = 0.8) + 
+    coord_sf(crs = 4326, expand = FALSE) +
+    labs(title = "Tilandsia latifolia") +
+    theme_bw()+
     theme(legend.position = "top",
           plot.title = element_text(face = "bold.italic", size = 18, hjust = 0.5)) 
 ```
