@@ -6,6 +6,6 @@ authors:
   orcid: "https://orcid.org/0009-0006-6390-464X"
 title: "IUCN maps"
 version: 2.0.4
-doi: 10.5281/zenodo.1234
+# doi: 10.5281/zenodo.1234
 date-released: 2025-05-30
 url: "https://github.com/Bryan1qr/iucn_project"
