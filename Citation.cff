@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
-- family-names: "Quispe"
-  given-names: "Bryan"
+- family-names: "Quispe-Ramos"
+  given-names: "Bryan Antony"
   orcid: "https://orcid.org/0009-0006-6390-464X"
 title: "IUCN maps"
 version: 2.0.4
