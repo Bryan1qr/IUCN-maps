@@ -2,7 +2,6 @@
 title: "Tilandsia"
 execute: 
   warning: false
-  message: false
 format: html
 ---
 
@@ -30,20 +29,9 @@ spat <- data1$spatial
 ggplot() + geom_sf(data = spat, aes(fill = tax), alpha = 0.3) + theme_bw()
 ```
 
-Determinating alpha hull
-
-```{r}
-data_hull <- EOO.computing(dataset.ex,
-              method.range = "alpha.hull", export_shp = T)
-
-spat_hull <- data_hull$spatial
-ggplot() + geom_sf(data = spat_hull, aes(fill = tax), alpha = 0.3) + theme_bw()
-```
-
 # *Tilandsia latifolia*
 
 ```{r}
-library(ggspatial)
 fuente <- read.csv("SP_ConR-2022_28mayo2025.csv", sep = ";")
 data2 <- EOO.computing(fuente, export_shp = T)
 spat2 <- data2$spatial
@@ -52,7 +40,7 @@ land <- rnaturalearth::ne_countries(
             scale = 50, returnclass = "sf")
 
 
-g1 <- ggplot() + 
+g0 <- ggplot() + 
     geom_sf(data = land, fill = "transparent") +
     geom_sf(data = spat2, alpha = 0.4, aes(fill = tax), lty = 1, lwd = 0.5, color = "hotpink") + 
     coord_sf(crs = 4326, expand = FALSE) +
@@ -63,25 +51,28 @@ g1 <- ggplot() +
           plot.title = element_text(face = "bold.italic", size = 18, hjust = 0.5)) +
     annotation_north_arrow(location = "bl", which_north = "true", 
                          style = north_arrow_minimal())
+# ggsave("mapa1.png", width = 25, height = 15, units = "cm", dpi = 400)
+g0
+```
+
+
+```{r}
+library(ggplot2)
+library(sf)
+library(ggspatial)
+
+# Proyección ortográfica centrada, por ejemplo, en longitud 0 y latitud 0
+crsxd <- "+proj=ortho +lat_0=-9.2 +lon_0=-75.0 +datum=WGS84 +units=m +no_defs"
+
+g1 <- ggplot() + 
+  geom_sf(data = land, fill = "transparent") +
+  geom_sf(data = spat2, alpha = 0.4, aes(fill = tax), lty = 1, lwd = 0.5, color = "transparent") + 
+  coord_sf(crs = crsxd) +
+  scale_fill_manual(values = "darkgreen") +
+  labs(title = "Extent of occurrences", fill = "") +
+  theme_minimal() +
+  theme(legend.position = "top",
+        plot.title = element_text(face = "bold.italic", size = 18, hjust = 0.5))
 
 g1
-#ggsave(plot = g1, "mapa1.png", width = 25, height = 15, units = "cm", dpi = 300)
-```
-
-## Alpha hull
-
-```{r}
-data_hull2 <- EOO.computing(fuente,
-              method.range = "alpha.hull", export_shp = T)
-
-spat_hull2 <- data_hull2$spatial
-
-ggplot() + 
-  geom_sf(data = spat2, alpha = 0.4, aes(fill = tax), lty = 1, lwd = 0.5, color = "hotpink") + 
-  geom_sf(data = spat_hull2, aes(fill = tax), alpha = 0.3) + theme_bw()
-```
-
-
-```{r}
-criterion_B(fuente[1:3])
 ```
