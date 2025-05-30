@@ -16,13 +16,14 @@ Cargamos el dataset de ejemplo:
 
 ```{r}
 library(ConR)
+library(tidyverse)
+library(ggspatial)
 data(dataset.ex)
 head(dataset.ex)
 ```
 
 ```{r}
 data1 <- EOO.computing(dataset.ex, export_shp = T)
-library(tidyverse)
 spat <- data1$spatial
 
 ggplot() + geom_sf(data = spat, aes(fill = tax), alpha = 0.3) + theme_bw()
